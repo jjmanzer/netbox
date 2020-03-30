@@ -8,8 +8,6 @@ Test the netbox API by running a set of scenarios at it designed to show how net
 3. Use get next free address logic in a heavily fragmented prefix, then deallocate only those addresses.
 
 After running each of these 3 tests, results are combined and a more general report is generated.
-
-Make sure to populate the header auth data below.
 """
 
 import argparse
@@ -243,7 +241,12 @@ def colnum_string(n):
 
 
 def add_worker_data_to_sheet(worker_data: dict, sheet: object):
-    """Add all the worker reports in worker_data to the workbook."""
+    """Add all the worker reports in worker_data to the workbook.
+
+    We create a tab for every level of concurrency from 1 - N.
+    Each tab contains 6 datsets (3 tests with 2 phases each) worth of raw data, avg, stdv and total.
+    Hopefully the raw data will make sure useful data visualization which is not included in this code.
+    """
 
     for worker_id, worker_report in enumerate(worker_data.values()):
         footer_row = len(worker_report['test_get_next_free_address']['allocate']['data']) + 6
