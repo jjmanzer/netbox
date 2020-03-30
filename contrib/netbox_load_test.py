@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Test the netbox API by running a set of scenarios at it designed to show how netbox responds to heavy load.
